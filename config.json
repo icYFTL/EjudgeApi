@@ -1,0 +1,26 @@
+{
+  "edudje": {
+    "requires_patch": {
+      "secure_exec": false,
+      "security-violation": false,
+      "memory_limit": false
+    },
+    "inst_ejudge_path": "/home/ejudge/inst-ejudge/bin/ejudge-execute",
+    "kill_sig": "KILL",
+    "is_patched": false,
+    "group": "ejudge_slave"
+  },
+  "api": {
+    "key": "kek"
+  },
+  "environment": {
+    "solves_storage_path": "/home/ejudge/solves"
+  },
+  "builders": {
+    "python3": "/home/ejudge/.local/bin/pyinstaller",
+    "c": "gcc",
+    "cpp": "g++",
+    "pascal": "fpc",
+    "java": "javac"
+  }
+}
