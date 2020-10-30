@@ -4,6 +4,7 @@ from os import getcwd
 
 app = Flask(__name__)
 
+
 config = json.load(open('config.json', 'r', encoding='UTF-8'))
 ejudge_conf = config['edudje']
 api_conf = config['api']

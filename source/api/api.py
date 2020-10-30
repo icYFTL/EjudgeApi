@@ -2,7 +2,7 @@ from core import app, api_conf, root_path
 from flask import request
 import json
 from source.handler import *
-from source.handler.configHandler import ejudge_args_handler
+from source.handler.preHandler import ejudge_args_handler
 from base64 import decodebytes
 from os import chdir
 

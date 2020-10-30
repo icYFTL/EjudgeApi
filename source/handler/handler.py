@@ -26,8 +26,9 @@ class Handler:
 
             status = True
             stdout = stdout.decode('UTF-8')
-            if stdout[-1] == '\n':
-                stdout = stdout[0:1]
+            if stdout:
+                if stdout[-1] == '\n':
+                    stdout = stdout[0:1]
             if 'Status: OK' not in stderr.decode() or stdout != test['answer']:
                 status = False
 

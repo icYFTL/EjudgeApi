@@ -1,13 +1,14 @@
 {
+
   "edudje": {
     "requires_patch": {
-      "secure_exec": false,
-      "security-violation": false,
-      "memory_limit": false
+      "secure_exec": true,
+      "security-violation": true,
+      "memory_limit": true
     },
-    "inst_ejudge_path": "/home/ejudge/inst-ejudge/bin/ejudge-execute",
+    "inst_ejudge_path": "/opt/ejudge/bin/ejudge-execute",
     "kill_sig": "KILL",
-    "is_patched": false,
+    "is_patched": true,
     "group": "ejudge_slave"
   },
   "api": {
@@ -17,7 +18,7 @@
     "solves_storage_path": "/home/ejudge/solves"
   },
   "builders": {
-    "python3": "/home/ejudge/.local/bin/pyinstaller",
+    "python3": "/usr/local/bin/pyinstaller",
     "c": "gcc",
     "cpp": "g++",
     "pascal": "fpc",
