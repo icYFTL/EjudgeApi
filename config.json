@@ -1,14 +1,13 @@
 {
-
   "edudje": {
     "requires_patch": {
-      "secure_exec": true,
-      "security-violation": true,
-      "memory_limit": true
+      "secure_exec": false,
+      "security-violation": false,
+      "memory_limit": false
     },
-    "inst_ejudge_path": "/opt/ejudge/bin/ejudge-execute",
+    "inst_ejudge_path": "/home/ejudge/ejudge/ejudge-execute",
     "kill_sig": "KILL",
-    "is_patched": true,
+    "is_patched": false,
     "group": "ejudge_slave"
   },
   "api": {
