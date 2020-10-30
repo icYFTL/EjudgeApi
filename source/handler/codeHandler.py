@@ -9,7 +9,7 @@ class Language(Enum):
     Python = f'{builders_conf["python3"]} ' + '{source}' + ' -F', '.py'
     C = f'{builders_conf["c"]} -o in ' + '{source}', '.c'
     CPP = f'{builders_conf["cpp"]} -o in ' + '{source}', '.cpp'
-    Pascal = f'{builders_conf["pascal"]} ' + '{source}', '.pas'
+    Pascal = f'{builders_conf["pascal"]} -o in' + '{source}', '.pas'
     Java = f'{builders_conf["java"]} ' + '{source}', '.java'
 
 
