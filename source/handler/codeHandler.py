@@ -3,6 +3,7 @@ from enum import Enum
 from core import builders_conf, root_path
 from os import path, chdir
 from shutil import move
+import re
 
 
 class Language(Enum):
@@ -45,14 +46,15 @@ class CodeHandler:
         chdir(self.environment_path)
         p = subprocess.Popen(self.language.value[0].format(source=file), shell=True, stdin=None, stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE)
-        stdout, stderr = p.communicate()
+        stdout, stderr = map(lambda x: x.decode('UTF-8'), p.communicate())
+        stderr = re.sub('/home/ejudge/solves/[0-9]+/[0-9]+/in\.[a-z]+:?([0-9]+:[0-9]+)?:?', '', stderr)
         chdir(root_path)
         if self.language == Language.Python:
             if path.exists(path.join(self.environment_path, 'dist', 'in')):
                 move(path.join(self.environment_path, 'dist', 'in'), path.join(self.environment_path, 'in'))
             else:
-                return False, stderr.decode('UTF-8')
+                return False, stderr
         elif stderr:
-            return False, stderr.decode('UTF-8')
+            return False, stderr
 
-        return True, stdout.decode('UTF-8'), path.join(self.environment_path, 'in')
+        return True, stdout, path.join(self.environment_path, 'in')

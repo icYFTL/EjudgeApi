@@ -49,7 +49,7 @@ def on_run():
     # Compile user's code for ejudge
     compile_result = ch.compile()
     if not compile_result[0]:
-        return generate_reply(False, f'Compilation error', 400, error=compile_result[1])
+        return generate_reply(False, '', 400, error='Compilation error. ' + compile_result[1])
 
     # Generate tests for ejudge
     th = TestsHandler(tests=data['tests'], environment_path=sub_env)
@@ -70,6 +70,7 @@ def on_run():
     chdir(root_path)
     result = []
     for i, cell in enumerate(_pre_res):
-        result.append({'test_num': i, 'status': cell[0], 'stdout': cell[1], 'stderr': cell[2]})
+        if cell[0]:
+            result.append({'test_num': i, 'status': True, 'stdout': cell[1], 'stderr': cell[2]})
 
     return generate_reply(True, result, 200)

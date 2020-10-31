@@ -22,14 +22,17 @@ class Handler:
             )
             p = subprocess.Popen(cmd, shell=True, stdin=None, stdout=subprocess.PIPE,
                                  stderr=subprocess.PIPE)
-            stdout, stderr = p.communicate()
+            stdout, stderr = map(lambda x: x.decode('UTF-8'), p.communicate())
 
             status = True
-            stdout = stdout.decode('UTF-8')
             if stdout:
                 if stdout[-1] == '\n':
                     stdout = stdout[0:1]
-            if 'Status: OK' not in stderr.decode() or stdout != test['answer']:
+            if 'Status: OK' not in stderr or stdout != test['answer']:
                 status = False
 
-            yield status, stdout, stderr.decode('UTF-8')
+            execute_info = {
+
+            }
+
+            yield status, stdout, stderr

@@ -9,14 +9,16 @@ def check_config() -> bool:
 
 def ejudge_args_handler():
     args = []
-    if ejudge_conf['is_patched']:
-        if ejudge_conf['requires_patch']['secure_exec']:
+    if ejudge_conf.get('is_patched'):
+        if ejudge_conf.get('requires_patch', {}).get('secure_exec'):
             args.append('--secure-exec')
-        if ejudge_conf['requires_patch']['security-violation']:
+        if ejudge_conf.get('requires_patch', {}).get('security-violation'):
             args.append('--security-violation')
-        if ejudge_conf['requires_patch']['memory_limit']:
+        if ejudge_conf.get('requires_patch', {}).get('memory_limit'):
             args.append('--memory-limit')
-    if ejudge_conf['kill_sig']:
+    if ejudge_conf.get('kill_sig'):
         args.append('--kill-signal=' + ejudge_conf['kill_sig'])
+    if ejudge_conf.get('group'):
+        args.append('--group=' + ejudge_conf['group'])
 
     return args

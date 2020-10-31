@@ -8,7 +8,7 @@
     "inst_ejudge_path": "/home/ejudge/ejudge/ejudge-execute",
     "kill_sig": "KILL",
     "is_patched": false,
-    "group": "ejudge_slave"
+    "group": "ejudge"
   },
   "api": {
     "key": "kek"
