@@ -31,8 +31,4 @@ class Handler:
             if 'Status: OK' not in stderr or stdout != test['answer']:
                 status = False
 
-            execute_info = {
-
-            }
-
             yield status, stdout, stderr

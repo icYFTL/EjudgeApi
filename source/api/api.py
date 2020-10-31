@@ -70,7 +70,6 @@ def on_run():
     chdir(root_path)
     result = []
     for i, cell in enumerate(_pre_res):
-        if cell[0]:
-            result.append({'test_num': i, 'status': True, 'stdout': cell[1], 'stderr': cell[2]})
+        result.append({'test_num': i, 'status': cell[0], 'stdout': cell[1], 'stderr': cell[2]})
 
     return generate_reply(True, result, 200)
