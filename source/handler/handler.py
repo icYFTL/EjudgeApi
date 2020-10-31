@@ -27,7 +27,7 @@ class Handler:
             status = True
             if stdout:
                 if stdout[-1] == '\n':
-                    stdout = stdout[0:1]
+                    stdout = stdout[0:-1]
             if 'Status: OK' not in stderr or stdout != test['answer']:
                 status = False
 

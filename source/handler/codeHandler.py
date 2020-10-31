@@ -12,6 +12,7 @@ class Language(Enum):
     CPP = f'{builders_conf["cpp"]} -o in ' + '{source}', '.cpp'
     Pascal = f'{builders_conf["pascal"]} -O in ' + '{source}', '.pas'
     Java = f'{builders_conf["java"]} ' + '{source}', '.java'
+    CSharp = f'{builders_conf["csharp"]} -out:in ' + '{source}', '.cs'
 
 
 class CodeHandler:
@@ -29,8 +30,10 @@ class CodeHandler:
             self.language = Language.CPP
         elif language == 'pascal':
             self.language = Language.Pascal
-        elif language == 'java':
-            self.language = Language.Java
+        #elif language == 'java':
+        #   self.language = Language.Java
+        elif language == 'csharp':
+            self.language = Language.CSharp
         else:
             return False, 'Unsupported language'
         return True, None
@@ -44,6 +47,9 @@ class CodeHandler:
     def compile(self) -> tuple:
         file = path.join(self.environment_path, self.make_file())
         chdir(self.environment_path)
+        if self.language == Language.Java:
+            move(path.join(self.environment_path, 'in.java'), path.join(self.environment_path, 'Main.java'))
+            file = path.join(self.environment_path, 'Main.java')
         p = subprocess.Popen(self.language.value[0].format(source=file), shell=True, stdin=None, stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE)
         stdout, stderr = map(lambda x: x.decode('UTF-8'), p.communicate())
@@ -54,6 +60,8 @@ class CodeHandler:
                 move(path.join(self.environment_path, 'dist', 'in'), path.join(self.environment_path, 'in'))
             else:
                 return False, stderr
+        elif stderr and path.exists(path.join(self.environment_path, 'in')):
+            pass
         elif stderr:
             return False, stderr
 

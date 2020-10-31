@@ -21,6 +21,7 @@
     "c": "gcc",
     "cpp": "g++",
     "pascal": "fpc",
-    "java": "javac"
+    "java": "javac",
+    "csharp": "mcs"
   }
 }
