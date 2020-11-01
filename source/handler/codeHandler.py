@@ -13,6 +13,7 @@ class Language(Enum):
     Pascal = f'{builders_conf["pascal"]} -O in ' + '{source}', '.pas'
     Java = f'{builders_conf["java"]} ' + '{source}', '.java'
     CSharp = f'{builders_conf["csharp"]} -out:in ' + '{source}', '.cs'
+    Perl = f'{builders_conf["perl"]} -o in ' + '{source}', '.pl'
 
 
 class CodeHandler:
@@ -34,6 +35,8 @@ class CodeHandler:
         #   self.language = Language.Java
         elif language == 'csharp':
             self.language = Language.CSharp
+        elif language == 'perl':
+            self.language = Language.Perl
         else:
             return False, 'Unsupported language'
         return True, None
